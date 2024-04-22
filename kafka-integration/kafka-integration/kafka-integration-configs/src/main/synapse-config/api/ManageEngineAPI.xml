@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/me" name="ManageEngineAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST GET" uri-template="/{function_name}">
+        <inSequence>
+            <propertyGroup>
+                <property expression="get-property('uri.var.function_name')" name="function" scope="default" type="STRING"/>
+            </propertyGroup>
+            <log>
+                <property expression="fn:concat('Trigger ME function ',$ctx:function,'...')" name="Message"/>
+            </log>
+            <sequence key="{fn:concat('main_manage_engine_',$ctx:function,'_seq')}"/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

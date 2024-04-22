@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="main_manage_engine_add_ticket_seq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup>
+        <property expression="$trp:apiKey" name="apiKey" scope="default" type="STRING"/>
+    </propertyGroup>
+    <payloadFactory media-type="text">
+        <format>input_data: "{&#xd;
+    "request": {&#xd;
+        "subject": "SPS-TEST-PULL-RET-051820-003:Pull Item Request:0000226674",&#xd;
+        "description": "SPS TEST",&#xd;
+        "requester": {&#xd;
+            "name": "Tran Hoang Minh",&#xd;
+"email_id": "minh.tran@spsglobal.com"&#xd;
+        },&#xd;
+		"template": {&#xd;
+            "name": "Generic Service Request"&#xd;
+        },&#xd;
+"urgency": {&#xd;
+            "name": "3 - Medium"&#xd;
+        },&#xd;
+"impact": {&#xd;
+            "name": "3 - Moderate/Limited"&#xd;
+        }&#xd;
+}"&#xd;
+format: "json"</format>
+        <args/>
+    </payloadFactory>
+    <property name="transport.vfs.ContentType" scope="default" type="STRING" value="multipart/form-data"/>
+    <header name="authtoken" scope="transport" value="45C4F4DB-E466-43D5-B748-0047DCBABD18"/>
+    <log>
+        <property name="Message" value="Adding ticket..."/>
+    </log>
+    <call>
+        <endpoint>
+            <http method="post" uri-template="https://itservicedesk-test.spsglobal.com/api/v3/requests">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>-1</progressionFactor>
+                    <maximumDuration>0</maximumDuration>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </http>
+        </endpoint>
+    </call>
+    <log>
+        <property name="Message" value="Complete adding ticket to ME"/>
+    </log>
+    <respond/>
+</sequence>

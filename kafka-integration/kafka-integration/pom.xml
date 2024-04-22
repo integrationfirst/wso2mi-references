@@ -8,6 +8,9 @@
   <packaging>pom</packaging>
   <name>kafka-integration</name>
   <description>kafka-integration</description>
+  <modules>
+    <module>kafka-integration-manage-engine-integration</module>
+  </modules>
   <scm>
     <connection>scm:git:https://github.com/username/repository.git</connection>
     <developerConnection>scm:git:https://github.com/username/repository.git</developerConnection>

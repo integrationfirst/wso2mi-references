@@ -20,4 +20,10 @@
     <artifact name="ObjectStorageAPI" groupId="vn.ifr.study.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/ObjectStorageAPI.xml</file>
     </artifact>
+    <artifact name="main_manage_engine_add_ticket_seq" groupId="vn.ifr.study.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/main_manage_engine_add_ticket_seq.xml</file>
+    </artifact>
+    <artifact name="ManageEngineAPI" groupId="vn.ifr.study.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/ManageEngineAPI.xml</file>
+    </artifact>
 </artifacts>

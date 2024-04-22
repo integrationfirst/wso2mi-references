@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="Azure_OpenAI" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <propertyGroup>
-        <property expression="fn:concat(get-property('file','API_GATEWAY'),'/openai')" name="uri.var.openAIUrl" scope="default" type="STRING"/>
+        <property expression="fn:concat(get-property('file','IDP_API_GATEWAY_ENDPOINT'),'/openai')" name="uri.var.apigateway" scope="default" type="STRING"/>
+        <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+        <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
     </propertyGroup>
     <log>
         <property name="Message" value="Send request to OpenAI"/>
@@ -23,9 +25,9 @@
             <arg evaluator="xml" expression="$ctx:prompt"/>
         </args>
     </payloadFactory>
-    <call>
+    <call blocking="true">
         <endpoint>
-            <http method="post" uri-template="{uri.var.openAIUrl}">
+            <http method="post" uri-template="{uri.var.apigateway}">
                 <suspendOnFailure>
                     <initialDuration>-1</initialDuration>
                     <progressionFactor>-1</progressionFactor>
@@ -41,11 +43,8 @@
             </http>
         </endpoint>
     </call>
-    <propertyGroup>
-        <property name="transport.vfs.ContentType" scope="default" type="STRING" value="application/json"/>
-        <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
-    </propertyGroup>
-    <log level="full">
+    <propertyGroup/>
+    <log>
         <property name="Message" value="Request OpenAI completed"/>
     </log>
 </sequence>

@@ -4,30 +4,13 @@
         <property expression="$trp:apiKey" name="apiKey" scope="default" type="STRING"/>
     </propertyGroup>
     <payloadFactory media-type="text">
-        <format>input_data: "{&#xd;
-    "request": {&#xd;
-        "subject": "SPS-TEST-PULL-RET-051820-003:Pull Item Request:0000226674",&#xd;
-        "description": "SPS TEST",&#xd;
-        "requester": {&#xd;
-            "name": "Tran Hoang Minh",&#xd;
-"email_id": "minh.tran@spsglobal.com"&#xd;
-        },&#xd;
-		"template": {&#xd;
-            "name": "Generic Service Request"&#xd;
-        },&#xd;
-"urgency": {&#xd;
-            "name": "3 - Medium"&#xd;
-        },&#xd;
-"impact": {&#xd;
-            "name": "3 - Moderate/Limited"&#xd;
-        }&#xd;
-}"&#xd;
+        <format>input_data: {"request":{"subject":"SPS-TEST-PULL","description":"SPS TEST","requester":{"name":"Tran Hoang Minh","email_id":"minh.tran@spsglobal.com"},"template":{"name":"Generic Service Request"},"urgency":{"name":"3 - Medium"},"impact":{"name":"3 - Moderate/Limited"}}&#xd;
 format: "json"</format>
         <args/>
     </payloadFactory>
-    <property name="transport.vfs.ContentType" scope="default" type="STRING" value="multipart/form-data"/>
+    <property name="ContentType" scope="axis2" type="STRING" value="multipart/form-data"/>
     <header name="authtoken" scope="transport" value="45C4F4DB-E466-43D5-B748-0047DCBABD18"/>
-    <log>
+    <log level="full">
         <property name="Message" value="Adding ticket..."/>
     </log>
     <call>
@@ -44,7 +27,7 @@ format: "json"</format>
             </http>
         </endpoint>
     </call>
-    <log>
+    <log level="full">
         <property name="Message" value="Complete adding ticket to ME"/>
     </log>
     <respond/>

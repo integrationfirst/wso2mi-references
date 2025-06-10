@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="GoogleVertextAIEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="post" uri-template="https://us-central1-aiplatform.googleapis.com/v1/projects/splendid-sonar-174914/locations/us-central1/publishers/google/models/gemini-2.0-flash-001:generateContent">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+</endpoint>

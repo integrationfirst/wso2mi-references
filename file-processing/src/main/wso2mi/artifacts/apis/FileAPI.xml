@@ -16,14 +16,15 @@
         <outSequence/>
         <faultSequence/>
     </resource>
-    <resource methods="POST" uri-template="/sequence/{sequence_name}">
+    <resource methods="POST" uri-template="/sequence/{sequencename}">
         <inSequence>
             <propertyGroup>
-                <property expression="get-property('uri.var.sequence_name')" name="sequenceName" scope="default" type="STRING"/>
+                <property name="sequenceName" scope="default" type="STRING" expression="${params.pathParams.sequencename}" action="set"/>
             </propertyGroup>
-            <log>
+            <log category="INFO" logMessageID="false" logFullPayload="false">
+                <message>Execute sequence ${properties.synapse.sequenceName}</message>
                 <property name="Message" value="Trigger specific sequence by name"/>
-                <property expression="$ctx:sequenceName" name="Sequence"/>
+                <property name="Sequence" expression="$ctx:sequenceName"/>
             </log>
             <sequence key="{$ctx:sequenceName}"/>
         </inSequence>

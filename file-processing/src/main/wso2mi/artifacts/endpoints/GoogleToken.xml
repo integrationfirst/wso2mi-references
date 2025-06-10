@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="GoogleToken" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="post" uri-template="https://oauth2.googleapis.com/token">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+    <property name="Content-Type" scope="transport" value="application/x-www-form-urlencoded"/>
+</endpoint>

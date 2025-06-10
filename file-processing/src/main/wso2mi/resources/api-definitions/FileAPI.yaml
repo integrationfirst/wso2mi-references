@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: FileAPI
+  description: API Definition of FileAPI
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/files
+paths:
+  /move/{source}/{destination}:
+    post:
+      parameters:
+      - name: source
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: destination
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Sample Payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: payload
+        required: false
+      responses:
+        default:
+          description: Default response
+  /sequence/{sequencename}:
+    post:
+      parameters:
+      - name: sequencename
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Sample Payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: payload
+        required: false
+      responses:
+        default:
+          description: Default response
